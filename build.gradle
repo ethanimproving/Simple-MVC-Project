@@ -1,0 +1,14 @@
+plugins {
+  id 'java' // default Java version, set with sourceCompatibility
+  id 'org.springframework.boot' version '2.2.0.RELEASE'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+repositories {
+  jcenter()
+}
+
+dependencies {
+  implementation 'org.springframework.boot:spring-boot-starter-web'
+}

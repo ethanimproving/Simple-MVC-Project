@@ -10,5 +10,6 @@
 <body>
     <h2>Hello World!</h2>
     <img src="/static/logo.png" alt="Logo" height="100" >
+    <p>I am using JSP!</p>
 </body>
 </html>

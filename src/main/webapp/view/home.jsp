@@ -1,3 +1,4 @@
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,8 +9,11 @@
     <title>Application</title>
 </head>
 <body>
-    <h2>Hello ${name}</h2>
+    <h2>${message} ${name}</h2>
     <img src="/static/logo.png" alt="Logo" height="100" >
-    <p>I am using JSP!</p>
+    <c:forEach items="${books}" var="book">
+        <p>Title: ${book.getTitle()}, Author: ${book.getAuthor()}</p>
+    </c:forEach>
+
 </body>
 </html>

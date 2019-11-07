@@ -10,7 +10,7 @@ public class SimpleController {
 
     @RequestMapping("/home")
     public String home(ModelMap model) {
-        model.put("name", "World");
+        model.put("name", "Boot Camp!");
         return "home";
     }
 }

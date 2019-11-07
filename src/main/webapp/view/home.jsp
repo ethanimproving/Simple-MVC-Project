@@ -8,7 +8,7 @@
     <title>Application</title>
 </head>
 <body>
-    <h2>Hello World!</h2>
+    <h2>Hello ${name}</h2>
     <img src="/static/logo.png" alt="Logo" height="100" >
     <p>I am using JSP!</p>
 </body>

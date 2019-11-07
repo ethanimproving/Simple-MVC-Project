@@ -9,6 +9,11 @@ public class Book {
         this.author = author;
     }
 
+    @Override
+    public String toString() {
+        return this.title + " by " + this.author;
+    }
+
     public String getTitle() {
         return title;
     }

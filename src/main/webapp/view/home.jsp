@@ -12,7 +12,7 @@
     <h2>${message} ${name}</h2>
     <img src="/static/logo.png" alt="Logo" height="100" >
     <c:forEach items="${books}" var="book">
-        <p>Title: ${book.getTitle()}, Author: ${book.getAuthor()}</p>
+        <p><i>${book.getTitle()}</i> by ${book.getAuthor()}</p>
     </c:forEach>
 
 </body>

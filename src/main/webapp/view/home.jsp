@@ -11,6 +11,13 @@
 <body>
     <h2>${message} ${name}</h2>
     <img src="/static/logo.png" alt="Logo" height="100" >
+
+    <form action="/add" method="post">
+        <input type="text" name="title">
+        <input type="text" name="author">
+        <input type="Submit" name="Add Book">
+    </form>
+
     <c:forEach items="${books}" var="book">
         <p><i>${book.getTitle()}</i> by ${book.getAuthor()}</p>
     </c:forEach>

@@ -11,8 +11,9 @@ public class SimpleController {
 
     private BookRepository bookRepository = new BookRepository();
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(ModelMap model) {
+        model.put("book", new Book("",""));
         model.put("message", getMessage());
         model.put("name", "Boot Camp");
         model.put("books", bookRepository.getBooks());
@@ -22,7 +23,7 @@ public class SimpleController {
     @PostMapping("/add")
     public String add(ModelMap model, @ModelAttribute Book book) {
         bookRepository.add(book);
-        return "redirect:/home";
+        return "redirect:/";
     }
 
     private String getMessage() {

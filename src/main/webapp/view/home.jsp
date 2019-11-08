@@ -11,8 +11,7 @@
     <title>Application</title>
 </head>
 <body>
-    <h1><h:hello name="${name}"/></h1>
-    <h2>${message} ${name}</h2>
+    <h:hello name="${name}"/>
     <img src="/static/logo.png" alt="Logo" height="100" >
 
     <form action="/add" method="post">

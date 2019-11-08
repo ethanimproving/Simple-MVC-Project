@@ -13,7 +13,10 @@ public class HelloTag extends SimpleTagSupport {
         JspWriter out = getJspContext().getOut();
         boolean morning = new Random().nextBoolean();
         String message = (morning) ? "Hello" : "Goodbye";
-        out.println(message + " " + name + "!");
+        String color = (morning) ? "blue" : "red";
+        String bgc = (morning) ? "#cddc39" : "#ffc107";
+        out.print("<style> body {background-color: " + bgc + ";}</style>");
+        out.println("<h1 style=\"color: " + color + ";\">" + message + " " + name + "!</h1>");
     }
 
     public void setName(String name) {

@@ -14,7 +14,7 @@ public class SimpleController {
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String home(ModelMap model) {
         model.put("message", getMessage());
-        model.put("name", "Boot Camp!");
+        model.put("name", "Boot Camp");
         model.put("books", bookRepository.getBooks());
         return "home";
     }

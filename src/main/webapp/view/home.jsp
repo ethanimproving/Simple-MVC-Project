@@ -1,4 +1,6 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "h" uri = "http://tomcat.apache.org/hello-taglib" %>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,6 +11,7 @@
     <title>Application</title>
 </head>
 <body>
+    <h1><h:hello name="${name}"/></h1>
     <h2>${message} ${name}</h2>
     <img src="/static/logo.png" alt="Logo" height="100" >
 

@@ -2,8 +2,10 @@ package com.improving.bootcamp;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Random;
 
 @Controller
@@ -14,14 +16,23 @@ public class SimpleController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(ModelMap model) {
         model.put("book", new Book("",""));
-        model.put("message", getMessage());
-        model.put("name", "Boot Camp");
-        model.put("books", bookRepository.getBooks());
+        setCommonModelAttributes(model);
         return "home";
     }
 
+    private void setCommonModelAttributes(ModelMap model) {
+        model.put("message", getMessage());
+        model.put("name", "Boot Camp");
+        model.put("books", bookRepository.getBooks());
+    }
+
     @PostMapping("/add")
-    public String add(ModelMap model, @ModelAttribute Book book) {
+    public String add(ModelMap model, @Valid @ModelAttribute("book") Book book, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            System.out.println("Error!");
+            setCommonModelAttributes(model);
+            return "home";
+        }
         bookRepository.add(book);
         return "redirect:/";
     }

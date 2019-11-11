@@ -1,8 +1,6 @@
 package com.improving.bootcamp;
 
 import javax.validation.constraints.NotEmpty;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Book {
     @NotEmpty(message = "Enter a title, idiot")

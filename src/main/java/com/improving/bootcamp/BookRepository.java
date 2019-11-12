@@ -1,6 +1,7 @@
 package com.improving.bootcamp;
 
 import com.improving.bootcamp.client.BookClient;
+import com.improving.bootcamp.client.VolumeInfo;
 import com.improving.bootcamp.client.Volumes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,8 +41,16 @@ public class BookRepository {
     public void initialize() {
         Volumes volumes = this.bookClient.volumeSearch("F. Scott Fitsgerald");
         logger.info("Volume size: {}", volumes.getItems().size());
-        books.add(new Book("The Holy Bible", "God"));
-        books.add(new Book("The Great Gatsby", "F. Scott Fitzgerald"));
-        books.add(new Book("Journal", "Ethan Miller"));
+        for (var volume : volumes.getItems()) {
+            VolumeInfo volumeInfo = volume.getVolumeInfo();
+            String title = volumeInfo.getTitle();
+            List<String> authors = volumeInfo.getAuthors();
+            String author = (authors != null && !authors.isEmpty()) ? authors.get(0) : "Unknown Author";
+            books.add(new Book(title, author));
+
+        }
+//        books.add(new Book("The Holy Bible", "God"));
+//        books.add(new Book("The Great Gatsby", "F. Scott Fitzgerald"));
+//        books.add(new Book("Journal", "Ethan Miller"));
     }
 }

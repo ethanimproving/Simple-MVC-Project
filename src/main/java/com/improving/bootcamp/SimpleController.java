@@ -12,7 +12,11 @@ import java.util.Random;
 @Controller
 public class SimpleController {
 
-    private BookRepository bookRepository = new BookRepository();
+    private BookRepository bookRepository;
+
+    public SimpleController(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(ModelMap model) {
@@ -46,6 +50,11 @@ public class SimpleController {
     @GetMapping("/bad")
     public String badRequest() {
         throw new RuntimeException("Something went wrong");
+    }
+
+    @GetMapping("/teapot")
+    public String teapot() {
+        throw new TeapotException();
     }
 
 }

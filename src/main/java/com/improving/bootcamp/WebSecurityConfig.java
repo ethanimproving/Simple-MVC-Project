@@ -11,10 +11,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .mvcMatchers("/")
-                .permitAll()
-                .and()
-                .formLogin();
+        http
+            .csrf().disable()
+            .authorizeRequests()
+            .antMatchers("/").permitAll()
+            .antMatchers("/images/*").permitAll()
+            .anyRequest().authenticated()
+            .and()
+            .formLogin()
+            .defaultSuccessUrl("/", true)
+            .and()
+            .logout();
     }
 }

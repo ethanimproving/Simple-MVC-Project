@@ -21,7 +21,7 @@
 <!--    <h:hello name="${name}"/>-->
 <!--    <img src="/static/logo.png" alt="Logo" height="100" >-->
 
-    <form method="post" action="/add" th:object="${book}">
+    <form th:if="${showForm}" method="post" action="/add" th:object="${book}">
         <input th:field="*{title}" name="title" placeholder="title" th:errorclass="error"/>
         <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="errorMessage"></span>
         <input th:field="*{author}" name="author" placeholder="author" th:errorclass="error"/>

@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.Random;
 
 @Controller
@@ -19,23 +20,24 @@ public class SimpleController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String home(ModelMap model) {
+    public String home(ModelMap model, Principal principal) {
         model.put("book", new Book("",""));
-        setCommonModelAttributes(model);
+        setCommonModelAttributes(model, principal);
         return "home";
     }
 
-    private void setCommonModelAttributes(ModelMap model) {
+    private void setCommonModelAttributes(ModelMap model, Principal principal) {
+        model.put("showForm", principal != null && principal.getName().equalsIgnoreCase("admin"));
         model.put("message", getMessage());
-        model.put("name", "Boot Camp");
+        model.put("name", principal != null ? principal.getName() : "Boot Camp");
         model.put("books", bookRepository.getBooks());
     }
 
     @PostMapping("/add")
-    public String add(ModelMap model, @Valid @ModelAttribute("book") Book book, BindingResult bindingResult) {
+    public String add(ModelMap model, @Valid @ModelAttribute("book") Book book, BindingResult bindingResult, Principal principal) {
         if (bindingResult.hasErrors()) {
             System.out.println("Error!");
-            setCommonModelAttributes(model);
+            setCommonModelAttributes(model, principal);
             return "home";
         }
         bookRepository.add(book);

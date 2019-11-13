@@ -37,6 +37,10 @@ public class BookRepository {
         return Collections.unmodifiableList(books);
     }
 
+    public Book getBook(int id) {
+        return books.get(id);
+    }
+
     @PostConstruct
     public void initialize() {
         Volumes volumes = this.bookClient.volumeSearch("F. Scott Fitsgerald");
@@ -49,8 +53,5 @@ public class BookRepository {
             books.add(new Book(title, author));
 
         }
-//        books.add(new Book("The Holy Bible", "God"));
-//        books.add(new Book("The Great Gatsby", "F. Scott Fitzgerald"));
-//        books.add(new Book("Journal", "Ethan Miller"));
     }
 }

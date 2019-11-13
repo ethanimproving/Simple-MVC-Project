@@ -42,6 +42,12 @@ public class SimpleController {
         return "redirect:/";
     }
 
+    @GetMapping("/book")
+    public String book(ModelMap model, @RequestParam Integer id) {
+        model.put("book", bookRepository.getBook(id));
+        return "book";
+    }
+
     private String getMessage() {
         boolean morning = new Random().nextBoolean();
         return (morning) ? "Hello" : "Goodbye";

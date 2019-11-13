@@ -3,8 +3,11 @@ package com.improving.bootcamp;
 import javax.validation.constraints.NotEmpty;
 
 public class Book {
+    private float price;
+
     @NotEmpty(message = "Enter a title, idiot")
     private final String title;
+
 
     @NotEmpty(message = "Clearly this wasn't written by no one")
     private final String author;
@@ -25,5 +28,13 @@ public class Book {
 
     public String getAuthor() {
         return author;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
     }
 }

@@ -1,5 +1,6 @@
 package com.improving.bootcamp.api;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.improving.bootcamp.Book;
 import com.improving.bootcamp.BookRepository;
 import org.springframework.http.HttpStatus;
@@ -22,11 +23,13 @@ public class SimpleAPIController {
         this.bookRepository = bookRepository;
     }
 
+    @JsonView(JsonViews.SummaryView.class)
     @GetMapping("/books")
     public List<Book> books() {
         return bookRepository.getBooks();
     }
 
+    @JsonView(JsonViews.DetailsView.class)
     @GetMapping("/book/{id}")
     public Book book(@PathVariable int id) {
         return bookRepository.getBook(id);
